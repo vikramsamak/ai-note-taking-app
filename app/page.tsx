@@ -10,8 +10,8 @@ export default function LandingPage() {
       <main className="flex flex-col items-center">
         <HeroSection />
         <FeaturesSection />
-        <Footer />
       </main>
+      <Footer />
     </>
   );
 }

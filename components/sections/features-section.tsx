@@ -5,7 +5,7 @@ const features = [
   {
     icon: <FileText className="h-6 w-6 text-primary" />,
     title: "AI Summaries",
-    desc: "Get instant summaries for long notes using Gemini AI.",
+    desc: "Get instant summaries for long notes using AI.",
   },
   {
     icon: <Tag className="h-6 w-6 text-primary" />,
@@ -21,19 +21,30 @@ const features = [
 
 export default function FeaturesSection() {
   return (
-    <section id="features" className="w-full py-20 bg-muted/50">
-      <div className="container grid gap-6 md:grid-cols-3 px-4">
-        {features.map((f, i) => (
-          <Card key={i} className="p-6 text-center transition-all hover:shadow-md">
-            <CardHeader className="flex flex-col items-center space-y-2">
-              {f.icon}
-              <CardTitle>{f.title}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">{f.desc}</p>
-            </CardContent>
-          </Card>
-        ))}
+    <section id="features" className="w-full py-20">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold">Features</h2>
+          <p className="text-muted-foreground mt-2">
+            Everything you need to organize your notes.
+          </p>
+        </div>
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {features.map((f, i) => (
+            <Card
+              key={i}
+              className="p-6 text-center transition-all hover:shadow-lg"
+            >
+              <CardHeader className="flex flex-col items-center space-y-3">
+                {f.icon}
+                <CardTitle>{f.title}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">{f.desc}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       </div>
     </section>
   );
