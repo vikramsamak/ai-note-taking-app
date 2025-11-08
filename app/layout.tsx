@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ReactQueryClientProvider } from "@/contexts";
 import { ThemeProvider } from "@/contexts";
+import { Navbar } from "@/components/navbar";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -22,7 +23,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <ReactQueryClientProvider>{children}</ReactQueryClientProvider>
+          <ReactQueryClientProvider>
+            <Navbar />
+            {children}
+          </ReactQueryClientProvider>
         </ThemeProvider>
       </body>
     </html>
