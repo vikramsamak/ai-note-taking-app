@@ -22,7 +22,7 @@ const testimonials = [
   },
 ];
 
-export default function TestimonialSection() {
+export  function TestimonialSection() {
   return (
     <section id="testimonials" className="w-full py-20">
       <div className="container mx-auto px-4">

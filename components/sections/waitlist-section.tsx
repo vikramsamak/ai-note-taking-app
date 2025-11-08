@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-export default function WaitlistSection() {
+export  function WaitlistSection() {
   return (
     <section id="waitlist" className="w-full py-20">
       <div className="container mx-auto px-4 text-center">

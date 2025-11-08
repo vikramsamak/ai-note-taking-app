@@ -19,7 +19,7 @@ const features = [
   },
 ];
 
-export default function FeaturesSection() {
+export  function FeaturesSection() {
   return (
     <section id="features" className="w-full py-20">
       <div className="container mx-auto px-4">

@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-export default function HeroSection() {
+export  function HeroSection() {
   return (
     <section className="w-full py-28 text-center">
       <div className="container mx-auto px-4">
