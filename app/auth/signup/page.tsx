@@ -23,6 +23,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import * as z from "zod";
+import { useAuth } from "@/hooks";
+import { toast } from "sonner";
 
 const signUpSchema = z
   .object({
@@ -39,14 +41,31 @@ const signUpSchema = z
   });
 
 export default function SignUpPage() {
+  const { signUp } = useAuth();
+
   const form = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
     defaultValues: { name: "", email: "", password: "", confirmPassword: "" },
   });
 
-  function onSubmit(values: z.infer<typeof signUpSchema>) {
-    console.log(values);
-    // TODO: Integrate with Better Auth
+  async function onSubmit(values: z.infer<typeof signUpSchema>) {
+    try {
+      const res = await signUp.email({
+        name: values.name,
+        email: values.email,
+        password: values.password,
+        callbackURL: "/auth/signin",
+      });
+      if (res.error) {
+        throw new Error(res.error.message);
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        toast.error(error.message);
+      } else {
+        toast.error("Something went wrong. Please try again.");
+      }
+    }
   }
 
   return (

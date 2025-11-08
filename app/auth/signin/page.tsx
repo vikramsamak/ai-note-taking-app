@@ -23,7 +23,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import * as z from "zod";
-import { useAuth } from "@/contexts";
+import { useAuth } from "@/hooks";
 import { toast } from "sonner";
 
 const signInSchema = z.object({
@@ -44,6 +44,7 @@ export default function SignInPage() {
       const res = await signIn.email({
         email: values.email,
         password: values.password,
+        callbackURL: "/dashboard",
       });
       if (res.error) {
         throw new Error(res.error.message);
