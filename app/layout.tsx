@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ReactQueryClientProvider } from "@/contexts";
+import { ThemeProvider } from "@/contexts";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -15,7 +16,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <ReactQueryClientProvider>{children}</ReactQueryClientProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <ReactQueryClientProvider>{children}</ReactQueryClientProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
