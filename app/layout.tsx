@@ -2,6 +2,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/contexts/themeProvider";
 import { Toaster } from "@/components/ui/sonner";
 import type { Metadata } from "next";
+import { AuthProvider, ReactQueryClientProvider } from "@/contexts";
 
 export const metadata: Metadata = {
   title: "AI Notes – Smart Note-Taking with Gemini AI",
@@ -9,14 +10,22 @@ export const metadata: Metadata = {
   keywords: ["AI Notes", "Gemini AI", "Note-taking", "Next.js", "shadcn"],
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="bg-background text-foreground antialiased">
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {children}
-          <Toaster />
-        </ThemeProvider>
+        <ReactQueryClientProvider>
+          <AuthProvider>
+            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+              {children}
+              <Toaster />
+            </ThemeProvider>
+          </AuthProvider>
+        </ReactQueryClientProvider>
       </body>
     </html>
   );
