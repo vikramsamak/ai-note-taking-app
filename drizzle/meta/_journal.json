@@ -43,6 +43,13 @@
       "when": 1762680033392,
       "tag": "0005_outgoing_ultragirl",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1762680832976,
+      "tag": "0006_married_kulan_gath",
+      "breakpoints": true
     }
   ]
 }
