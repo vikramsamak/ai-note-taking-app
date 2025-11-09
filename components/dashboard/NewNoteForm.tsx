@@ -63,6 +63,7 @@ export function NewNoteForm({ onSubmit, isLoading = false }: NewNoteFormProps) {
                   onSerializedChange={
                     field.onChange as (value: SerializedEditorState) => void
                   }
+                  
                 />
               </FormControl>
               <FormMessage />
