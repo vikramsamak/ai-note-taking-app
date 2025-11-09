@@ -19,7 +19,8 @@
       "@/lib/*": ["./lib/*"],
       "@/hooks/*": ["./hooks/*"],
       "@/utils/*": ["./utils/*"],
-      "@/contexts/*": ["./contexts/*"]
+      "@/contexts/*": ["./contexts/*"],
+      "@/types/*": ["./types/*"]
     },
     "plugins": [
       {
