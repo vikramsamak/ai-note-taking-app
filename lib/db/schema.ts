@@ -14,6 +14,13 @@ export const notes = pgTable("notes", {
   summary: text("summary"),
   tags: text("tags"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at")
+    .defaultNow()
+    .$onUpdate(() => /* @__PURE__ */ new Date())
+    .notNull(),
+  userId: text("user_id")
+    .references(() => user.id)
+    .notNull(),
 });
 
 export const user = pgTable("user", {
