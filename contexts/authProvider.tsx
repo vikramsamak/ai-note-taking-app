@@ -6,10 +6,15 @@ import { createAuthClient } from "better-auth/react";
 const { signIn, signUp, signOut, useSession } = createAuthClient();
 
 interface AuthContextValue {
-  session: ReturnType<typeof useSession>["data"];
+  session: NonNullable<ReturnType<typeof useSession>["data"]>["session"] | null;
+  user: NonNullable<ReturnType<typeof useSession>["data"]>["user"] | null;
   signIn: typeof signIn;
   signUp: typeof signUp;
   signOut: typeof signOut;
+  isPending: ReturnType<typeof useSession>["isPending"];
+  isRefetching: ReturnType<typeof useSession>["isRefetching"];
+  error: ReturnType<typeof useSession>["error"];
+  refetch: ReturnType<typeof useSession>["refetch"];
 }
 
 export const AuthContext = createContext<AuthContextValue | undefined>(
@@ -17,12 +22,17 @@ export const AuthContext = createContext<AuthContextValue | undefined>(
 );
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const { data: session } = useSession();
+  const { data, isPending, isRefetching, error, refetch } = useSession();
 
   const value: AuthContextValue = {
-    session,
+    session: data?.session || null,
+    user: data?.user || null,
     signIn,
     signUp,
+    isPending,
+    isRefetching,
+    error,
+    refetch,
     signOut,
   };
 
