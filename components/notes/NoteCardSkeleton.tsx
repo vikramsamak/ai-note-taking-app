@@ -17,6 +17,10 @@ export function NoteCardSkeleton() {
           <Skeleton className="h-5 w-12 rounded-full" />
         </div>
       </CardContent>
+      <div className="flex justify-end gap-2 p-4 pt-2 border-t mt-2">
+        <Skeleton className="h-8 w-20" />
+        <Skeleton className="h-8 w-20" />
+      </div>
     </Card>
   );
 }

@@ -23,7 +23,7 @@ export function NewNoteDialog() {
     Error,
     { title: string; content: string }
   >({
-    mutationFn: ({ title, content }) => createNote({ title, content }),
+    mutationFn: async ({ title, content }) => createNote({ title, content }),
     onSuccess: () => {
       queryClient.invalidateQueries({
         predicate: (query) => query.queryKey.includes("notes"),
