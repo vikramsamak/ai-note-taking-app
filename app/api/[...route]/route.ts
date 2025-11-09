@@ -127,7 +127,7 @@ app.put("/notes/:id", async (c) => {
         title,
         content,
         summary,
-        tags,
+        tags: tags ? (Array.isArray(tags) ? tags : [tags]) : undefined,
       })
       .where(eq(notes.id, Number(id)))
       .returning();
@@ -182,7 +182,14 @@ app.patch("/notes/:id", async (c) => {
 
     const updatedNote = await db
       .update(notes)
-      .set(parsed.data)
+      .set({
+        ...parsed.data,
+        tags: parsed.data.tags
+          ? Array.isArray(parsed.data.tags)
+            ? parsed.data.tags
+            : [parsed.data.tags]
+          : undefined,
+      })
       .where(eq(notes.id, Number(id)))
       .returning();
 
