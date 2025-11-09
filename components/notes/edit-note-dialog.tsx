@@ -28,7 +28,6 @@ import {
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { noteSchema } from "@/lib/validations/note-schema";
-import { ScrollArea } from "../ui/scroll-area";
 
 interface EditNoteDialogProps {
   note: Note;
