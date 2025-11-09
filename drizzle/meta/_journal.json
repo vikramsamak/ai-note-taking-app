@@ -5,57 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1762604051958,
-      "tag": "0000_smart_cerebro",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1762604383020,
-      "tag": "0001_uneven_king_bedlam",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1762676365740,
-      "tag": "0002_tranquil_skrulls",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "7",
-      "when": 1762676610002,
-      "tag": "0003_rare_dreadnoughts",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "7",
-      "when": 1762679854683,
-      "tag": "0004_wide_hammerhead",
-      "breakpoints": true
-    },
-    {
-      "idx": 5,
-      "version": "7",
-      "when": 1762680033392,
-      "tag": "0005_outgoing_ultragirl",
-      "breakpoints": true
-    },
-    {
-      "idx": 6,
-      "version": "7",
-      "when": 1762680832976,
-      "tag": "0006_married_kulan_gath",
-      "breakpoints": true
-    },
-    {
-      "idx": 7,
-      "version": "7",
-      "when": 1762687882293,
-      "tag": "0007_furry_william_stryker",
+      "when": 1762703159586,
+      "tag": "0000_material_steve_rogers",
       "breakpoints": true
     }
   ]

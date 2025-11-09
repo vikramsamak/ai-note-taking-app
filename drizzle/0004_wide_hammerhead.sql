@@ -1,1 +1,0 @@
-ALTER TABLE "notes" ALTER COLUMN "tags" SET DATA TYPE text[];
