@@ -3,7 +3,7 @@ import { Note } from "@/types";
 
 export async function fetchNotes() {
   try {
-    return await notesService.get<Note[]>();
+    return await notesService.get<{ notes: Note[] }>();
   } catch (error) {
     if (error instanceof Error) {
       throw new Error(error.message);
