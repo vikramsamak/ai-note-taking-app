@@ -16,7 +16,7 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="mx-auto flex max-w-2xl flex-col gap-8">
+    <div className="mx-auto flex max-w-2xl flex-col gap-8 p-2">
     
       <div className="flex flex-col items-center gap-4 mt-6">
         <Avatar className="h-24 w-24">
