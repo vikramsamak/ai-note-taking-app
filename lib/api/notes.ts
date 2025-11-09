@@ -11,7 +11,12 @@ export async function fetchNotes() {
   }
 }
 
-export async function createNote(data: { title: string; content: string }) {
+export async function createNote(data: {
+  title: string;
+  content: string;
+  summary?: string;
+  tags?: string[];
+}) {
   try {
     return await notesService.post<Note>({ data });
   } catch (error) {
@@ -23,7 +28,7 @@ export async function createNote(data: { title: string; content: string }) {
 
 export async function updateNote(
   id: string,
-  data: { title?: string; content?: string; ummary?: string; tags?: string[] }
+  data: { title?: string; content?: string; summary?: string; tags?: string[] }
 ) {
   try {
     return await notesService.put<Note>({ id, data });

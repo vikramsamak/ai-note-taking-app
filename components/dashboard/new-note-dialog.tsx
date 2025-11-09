@@ -15,17 +15,30 @@ import { createNote } from "@/lib/api";
 import { Note } from "@/types";
 import { toast } from "sonner";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { noteSchema } from "@/lib/validations/note-schema";
 
 export function NewNoteDialog() {
   const [open, setOpen] = useState(false);
   const queryClient = useQueryClient();
 
+  const form = useForm<z.infer<typeof noteSchema>>({
+    defaultValues: {
+      title: "",
+      content: "",
+      summary: "",
+      tags: [],
+    },
+  });
+
   const { mutate, isPending } = useMutation<
     Note | undefined,
     Error,
-    { title: string; content: string }
+    z.infer<typeof noteSchema>
   >({
-    mutationFn: async ({ title, content }) => createNote({ title, content }),
+    mutationFn: async ({ title, content, summary, tags }) =>
+      createNote({ title, content, summary, tags }),
     onSuccess: () => {
       setOpen(false);
       queryClient.invalidateQueries({
@@ -50,7 +63,7 @@ export function NewNoteDialog() {
             Fill in the details to create your note.
           </DialogDescription>
         </DialogHeader>
-        <NoteForm onSubmit={(values) => mutate(values)} isLoading={isPending} />
+        <NoteForm form={form} onSubmit={(values) => mutate(values)} isLoading={isPending} />
       </DialogContent>
     </Dialog>
   );

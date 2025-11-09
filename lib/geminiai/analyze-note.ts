@@ -60,7 +60,7 @@ export async function analyzeNote(task: TaskType, noteId: string) {
         userPrompt = `
         Improve the following note’s clarity, tone, and sentence flow.
         Make it more engaging but retain the original meaning. 
-        Output only the improved note text.
+        Output the improved note content as clean and valid HTML only — no markdown or plain text.
         Note content:
         ${content}
         `;
@@ -72,8 +72,14 @@ export async function analyzeNote(task: TaskType, noteId: string) {
     const result = await geminiAIClient.models.generateContent({
       model,
       contents: [
-        { role: "system", parts: [{ text: systemPrompt }] },
-        { role: "user", parts: [{ text: userPrompt }] },
+        {
+          role: "user",
+          parts: [
+            {
+              text: `${systemPrompt}\n\n${userPrompt}`,
+            },
+          ],
+        },
       ],
     });
 

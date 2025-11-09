@@ -59,15 +59,15 @@ export function NoteCard({
   });
 
   return (
-    <EditNoteDialog note={{ id, title, content, summary, tags, createdAt }}>
-      <Card className="group rounded-xl border border-border transition-all hover:shadow-md hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-ring cursor-pointer">
-        <div>
-          <CardHeader>
-            <CardTitle className="truncate text-lg font-semibold group-hover:text-primary">
-              {title}
-            </CardTitle>
-          </CardHeader>
+    <Card className="group rounded-xl border border-border transition-all hover:shadow-md hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-ring cursor-pointer">
+      <div>
+        <CardHeader>
+          <CardTitle className="truncate text-lg font-semibold group-hover:text-primary">
+            {title}
+          </CardTitle>
+        </CardHeader>
 
+        <EditNoteDialog note={{ id, title, content, summary, tags, createdAt }}>
           <CardContent className="space-y-3 text-sm text-muted-foreground">
             <p className="line-clamp-3 text-foreground/90">
               {getTextFromHTML(content)}
@@ -95,39 +95,39 @@ export function NoteCard({
               {formatDistanceToNow(new Date(createdAt), { addSuffix: true })}
             </p>
           </CardContent>
-        </div>
-        <CardFooter className="flex justify-end gap-2 border-t">
-          <AlertDialog>
-            <AlertDialogTrigger asChild>
-              <Button size="sm" variant="destructive">
-                <Trash2 className="h-4 w-4 mr-1" />
-                Delete
-              </Button>
-            </AlertDialogTrigger>
-            <AlertDialogContent>
-              <AlertDialogHeader>
-                <AlertDialogTitle>Delete this note?</AlertDialogTitle>
-                <AlertDialogDescription>
-                  This action cannot be undone. The note will be permanently
-                  deleted.
-                </AlertDialogDescription>
-              </AlertDialogHeader>
-              <AlertDialogFooter>
-                <AlertDialogCancel>Cancel</AlertDialogCancel>
-                <AlertDialogAction
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    mutate(id);
-                  }}
-                  disabled={isPending}
-                >
-                  Confirm
-                </AlertDialogAction>
-              </AlertDialogFooter>
-            </AlertDialogContent>
-          </AlertDialog>
-        </CardFooter>
-      </Card>
-    </EditNoteDialog>
+        </EditNoteDialog>
+      </div>
+      <CardFooter className="flex justify-end gap-2 border-t">
+        <AlertDialog>
+          <AlertDialogTrigger>
+            <Button size="sm" variant="destructive" className="cursor-pointer">
+              <Trash2 className="h-4 w-4 mr-1" />
+              Delete
+            </Button>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Delete this note?</AlertDialogTitle>
+              <AlertDialogDescription>
+                This action cannot be undone. The note will be permanently
+                deleted.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogAction
+                onClick={(e) => {
+                  e.stopPropagation();
+                  mutate(id);
+                }}
+                disabled={isPending}
+              >
+                Confirm
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+      </CardFooter>
+    </Card>
   );
 }
