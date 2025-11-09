@@ -2,6 +2,7 @@
 
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
+import { NewNoteDialog } from "@/components/dashboard/NewNoteDialog";
 import { usePathname } from "next/navigation";
 
 export default function DashboardLayout({
@@ -20,7 +21,7 @@ export default function DashboardLayout({
   return (
     <SidebarProvider>
       <AppSidebar />
-      <main className="flex h-screen flex-col flex-1 p-4">
+      <main className="flex h-screen flex-col flex-1 p-4 relative">
         <header className="flex items-center justify-between border-b border-border">
           <div className="flex items-center gap-3">
             <SidebarTrigger />
@@ -33,6 +34,7 @@ export default function DashboardLayout({
           {children}
         </section>
       </main>
+      <NewNoteDialog />
     </SidebarProvider>
   );
 }
