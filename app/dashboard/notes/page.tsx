@@ -14,21 +14,19 @@ export default function NotesPage() {
   const { user } = useAuth();
   const [search, setSearch] = useState("");
 
-  const {
-    data: notes = [],
-    isLoading,
-    isError,
-    error,
-  } = useQuery({
+  const { data, isLoading, isError, error } = useQuery({
     queryKey: ["notes", user?.id],
     queryFn: fetchNotes,
   });
 
   const filteredNotes = useMemo(() => {
+    const notes = data?.notes ?? [];
+    if (notes.length === 0) return [];
+
     return notes.filter((note: Note) =>
       note.title.toLowerCase().includes(search.toLowerCase())
     );
-  }, [notes, search]);
+  }, [data, search]);
 
   const showEmpty = !isLoading && !isError && filteredNotes.length === 0;
 
