@@ -14,8 +14,10 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createNote } from "@/lib/api";
 import { Note } from "@/types";
 import { toast } from "sonner";
+import { useState } from "react";
 
 export function NewNoteDialog() {
+  const [open, setOpen] = useState(false);
   const queryClient = useQueryClient();
 
   const { mutate, isPending } = useMutation<
@@ -25,6 +27,7 @@ export function NewNoteDialog() {
   >({
     mutationFn: async ({ title, content }) => createNote({ title, content }),
     onSuccess: () => {
+      setOpen(false);
       queryClient.invalidateQueries({
         predicate: (query) => query.queryKey.includes("notes"),
       });
@@ -36,7 +39,7 @@ export function NewNoteDialog() {
   });
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger>
         <FloatingActionButton />
       </DialogTrigger>
