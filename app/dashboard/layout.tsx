@@ -2,7 +2,7 @@
 
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
-import { NewNoteDialog } from "@/components/dashboard/NewNoteDialog";
+import { NewNoteDialog } from "@/components/dashboard";
 import { usePathname } from "next/navigation";
 
 export default function DashboardLayout({

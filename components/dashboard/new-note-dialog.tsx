@@ -8,8 +8,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { FloatingActionButton } from "./FloatingActionButton";
-import { NewNoteForm } from "./NewNoteForm";
+import { FloatingActionButton } from "./floating-action-button";
+import { NewNoteForm } from "./new-note-form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createNote } from "@/lib/api";
 import { Note } from "@/types";

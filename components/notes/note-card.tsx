@@ -25,7 +25,7 @@ import {
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { deleteNote } from "@/lib/api";
-import { EditNoteDialog } from "./EditNoteDialog";
+import { EditNoteDialog } from "./edit-note-dialog";
 import { Note } from "@/types";
 
 const getTextFromHTML = (html: string) => {

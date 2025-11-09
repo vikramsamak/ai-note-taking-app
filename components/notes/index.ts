@@ -1,3 +1,3 @@
-export * from "./NoteCard";
-export * from "./NoteCardSkeleton";
-export * from "./NotesSearchBar";
+export * from "./note-card";
+export * from "./note-card-skeleton";
+export * from "./notes-search-bar";

@@ -2,9 +2,7 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { fetchNotes } from "@/lib/api/notes";
-import { NoteCard } from "@/components/notes/NoteCard";
-import { NoteCardSkeleton } from "@/components/notes/NoteCardSkeleton";
-import { NotesSearchBar } from "@/components/notes/NotesSearchBar";
+import { NoteCard, NoteCardSkeleton, NotesSearchBar } from "@/components/notes";
 import { useMemo, useState } from "react";
 import { Note } from "@/types";
 import { useAuth } from "@/hooks";
@@ -66,11 +64,7 @@ export default function NotesPage() {
           {!isLoading && !isError && filteredNotes.length > 0 && (
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {filteredNotes.map((note: Note) => (
-                <NoteCard
-                  key={note.id}
-                  {...note}
-                  onClick={(id) => console.log("Clicked Note:", id)}
-                />
+                <NoteCard key={note.id} {...note} />
               ))}
             </div>
           )}
