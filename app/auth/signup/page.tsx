@@ -25,6 +25,9 @@ import Link from "next/link";
 import * as z from "zod";
 import { useAuth } from "@/hooks";
 import { toast } from "sonner";
+import { Spinner } from "@/components/ui/spinner";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const signUpSchema = z
   .object({
@@ -42,6 +45,8 @@ const signUpSchema = z
 
 export default function SignUpPage() {
   const { signUp } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
+  const { push } = useRouter();
 
   const form = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
@@ -50,21 +55,26 @@ export default function SignUpPage() {
 
   async function onSubmit(values: z.infer<typeof signUpSchema>) {
     try {
+      setIsLoading(true);
       const res = await signUp.email({
         name: values.name,
         email: values.email,
         password: values.password,
-        callbackURL: "/auth/signin",
       });
       if (res.error) {
         throw new Error(res.error.message);
       }
+      toast.success("Account created successfully!");
+      form.reset();
+      push("/auth/signin");
     } catch (error) {
       if (error instanceof Error) {
         toast.error(error.message);
       } else {
         toast.error("Something went wrong. Please try again.");
       }
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -135,8 +145,19 @@ export default function SignUpPage() {
                 </FormItem>
               )}
             />
-            <Button type="submit" className="w-full cursor-pointer">
-              Sign Up
+            <Button
+              type="submit"
+              className="flex justify-center w-full cursor-pointer"
+              disabled={isLoading}
+            >
+              {isLoading ? (
+                <span className="flex items-center gap-2">
+                  <Spinner />
+                  <p className="text-sm">Signing Up...</p>
+                </span>
+              ) : (
+                <span>Sign Up</span>
+              )}
             </Button>
           </form>
         </Form>

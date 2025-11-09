@@ -25,6 +25,8 @@ import Link from "next/link";
 import * as z from "zod";
 import { useAuth } from "@/hooks";
 import { toast } from "sonner";
+import { useState } from "react";
+import { Spinner } from "@/components/ui/spinner";
 
 const signInSchema = z.object({
   email: z.email("Invalid email address"),
@@ -33,6 +35,7 @@ const signInSchema = z.object({
 
 export default function SignInPage() {
   const { signIn } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
 
   const form = useForm<z.infer<typeof signInSchema>>({
     resolver: zodResolver(signInSchema),
@@ -41,6 +44,7 @@ export default function SignInPage() {
 
   async function onSubmit(values: z.infer<typeof signInSchema>) {
     try {
+      setIsLoading(true);
       const res = await signIn.email({
         email: values.email,
         password: values.password,
@@ -56,6 +60,8 @@ export default function SignInPage() {
       } else {
         toast.error("Something went wrong. Please try again.");
       }
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -98,8 +104,19 @@ export default function SignInPage() {
                 </FormItem>
               )}
             />
-            <Button type="submit" className="w-full cursor-pointer">
-              Sign In
+            <Button
+              type="submit"
+              className="flex justify-center w-full cursor-pointer"
+              disabled={isLoading}
+            >
+              {isLoading ? (
+                <span className="flex items-center gap-2">
+                  <Spinner />
+                  <p className="text-sm">Signining In...</p>
+                </span>
+              ) : (
+                <span>Sign In</span>
+              )}
             </Button>
           </form>
         </Form>
