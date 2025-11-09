@@ -12,9 +12,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { SerializedEditorState } from "lexical";
-import { Editor } from "@/components/blocks/editor-00/editor";
 import { newNoteSchema } from "@/lib/validations/note-schema";
+import { MinimalTiptap } from "@/components/ui/shadcn-io/minimal-tiptap";
 import z from "zod";
 
 interface NewNoteFormProps {
@@ -27,7 +26,7 @@ export function NewNoteForm({ onSubmit, isLoading = false }: NewNoteFormProps) {
     resolver: zodResolver(newNoteSchema),
     defaultValues: {
       title: "",
-      content: null,
+      content: "",
     },
   });
 
@@ -35,7 +34,7 @@ export function NewNoteForm({ onSubmit, isLoading = false }: NewNoteFormProps) {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit((values) => onSubmit(values))}
-        className="space-y-6"
+        className="space-y-6 w-full"
       >
         <FormField
           control={form.control}
@@ -58,12 +57,12 @@ export function NewNoteForm({ onSubmit, isLoading = false }: NewNoteFormProps) {
             <FormItem>
               <FormLabel>Content</FormLabel>
               <FormControl>
-                <Editor
-                  editorSerializedState={field.value as SerializedEditorState}
-                  onSerializedChange={
-                    field.onChange as (value: SerializedEditorState) => void
-                  }
-                  
+                <MinimalTiptap
+                  content={field.value as string}
+                  onChange={field.onChange as (content: string) => void}
+                  placeholder="Start typing your content here..."
+                  className="min-h-[400px]"
+                  editable={!isLoading}
                 />
               </FormControl>
               <FormMessage />
