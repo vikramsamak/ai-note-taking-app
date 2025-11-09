@@ -80,10 +80,10 @@ export function AppSidebar() {
             </Avatar>
             <div className="flex flex-col">
               <span className="text-sm font-medium truncate">
-                {user?.name || "User"}
+                {user?.name ?? "User"}
               </span>
               <span className="text-xs text-muted-foreground truncate max-w-[120px]">
-                {user?.email || ""}
+                {user?.email ?? ""}
               </span>
             </div>
           </div>
