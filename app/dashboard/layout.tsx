@@ -3,7 +3,6 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import { usePathname } from "next/navigation";
-import { ScrollArea } from "@/components/ui/scroll-area";
 
 export default function DashboardLayout({
   children,
@@ -30,8 +29,8 @@ export default function DashboardLayout({
             </h1>
           </div>
         </header>
-        <section className="flex-1 min-h-0 border rounded-md">
-          <ScrollArea className="h-full w-full p-2">{children}</ScrollArea>
+        <section className="flex-1 min-h-0 border rounded-md p-2 mt-2 bg-muted/5">
+          {children}
         </section>
       </main>
     </SidebarProvider>
