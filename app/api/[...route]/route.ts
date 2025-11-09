@@ -47,15 +47,7 @@ app.post("/notes", async (c) => {
 
     const schema = z.object({
       title: z.string().min(1, "Title is required"),
-      content: z
-        .any()
-        .refine(
-          (val) =>
-            val !== null &&
-            typeof val === "object" &&
-            Object.keys(val).length > 0,
-          { message: "Content must be a valid JSON object and cannot be empty" }
-        ),
+      content: z.string().min(1, { message: "Content cannot be empty" }),
     });
 
     const body = await c.req.json();
@@ -107,15 +99,7 @@ app.put("/notes/:id", async (c) => {
 
     const schema = z.object({
       title: z.string().min(1, { message: "Title is required" }),
-      content: z
-        .any()
-        .refine(
-          (val) =>
-            val !== null &&
-            typeof val === "object" &&
-            Object.keys(val).length > 0,
-          { message: "Content must be a valid JSON object and cannot be empty" }
-        ),
+      content: z.string().min(1, { message: "Content cannot be empty" }),
       summary: z.string().optional(),
       tags: z.union([z.string(), z.array(z.string())]).optional(),
     });
@@ -174,15 +158,9 @@ app.patch("/notes/:id", async (c) => {
     const schema = z.object({
       title: z.string().min(1, { message: "Title cannot be empty" }).optional(),
       content: z
-        .any()
-        .optional()
-        .refine(
-          (val) =>
-            val !== null &&
-            typeof val === "object" &&
-            Object.keys(val).length > 0,
-          { message: "Content must be a valid JSON object and cannot be empty" }
-        ),
+        .string()
+        .min(1, { message: "Content cannot be empty" })
+        .optional(),
       summary: z.string().optional(),
       tags: z.union([z.string(), z.array(z.string())]).optional(),
     });
