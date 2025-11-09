@@ -74,16 +74,12 @@ export function AppSidebar() {
           <div className="flex items-center gap-3">
             <Avatar className="h-8 w-8">
               <AvatarImage src={user?.image || ""} alt="User avatar" />
-              <AvatarFallback>
-                {user?.email?.[0]?.toUpperCase() ?? "U"}
-              </AvatarFallback>
+              <AvatarFallback>{user?.email?.[0]?.toUpperCase()}</AvatarFallback>
             </Avatar>
             <div className="flex flex-col">
-              <span className="text-sm font-medium truncate">
-                {user?.name ?? "User"}
-              </span>
+              <span className="text-sm font-medium truncate">{user?.name}</span>
               <span className="text-xs text-muted-foreground truncate max-w-[120px]">
-                {user?.email ?? ""}
+                {user?.email}
               </span>
             </div>
           </div>
