@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { NoteForm } from "../dashboard";
+import { NoteForm } from "@/components/notes";
 import { Note } from "@/types";
 import { updateNote } from "@/lib/api";
 import { AiActionsDropdown } from "./ai-actions-dropdown";
