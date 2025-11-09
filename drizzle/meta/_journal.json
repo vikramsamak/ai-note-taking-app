@@ -29,6 +29,20 @@
       "when": 1762676610002,
       "tag": "0003_rare_dreadnoughts",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1762679854683,
+      "tag": "0004_wide_hammerhead",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1762680033392,
+      "tag": "0005_outgoing_ultragirl",
+      "breakpoints": true
     }
   ]
 }

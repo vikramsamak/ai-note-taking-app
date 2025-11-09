@@ -5,6 +5,7 @@ import {
   timestamp,
   varchar,
   boolean,
+  jsonb,
 } from "drizzle-orm/pg-core";
 
 export const notes = pgTable("notes", {
@@ -12,7 +13,7 @@ export const notes = pgTable("notes", {
   title: varchar("title", { length: 255 }).notNull(),
   content: text("content").notNull(),
   summary: text("summary"),
-  tags: text("tags"),
+  tags: jsonb("tags").$type<string[]>().default([]),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at")
     .defaultNow()
