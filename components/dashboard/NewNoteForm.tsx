@@ -19,14 +19,22 @@ import z from "zod";
 interface NewNoteFormProps {
   onSubmit: (values: z.infer<typeof newNoteSchema>) => void;
   isLoading?: boolean;
+  defaultValues?: {
+    title: string;
+    content: string;
+  };
 }
 
-export function NewNoteForm({ onSubmit, isLoading = false }: NewNoteFormProps) {
+export function NewNoteForm({
+  onSubmit,
+  isLoading = false,
+  defaultValues,
+}: NewNoteFormProps) {
   const form = useForm({
     resolver: zodResolver(newNoteSchema),
     defaultValues: {
-      title: "",
-      content: "",
+      title: defaultValues?.title || "",
+      content: defaultValues?.content || "",
     },
   });
 
@@ -76,7 +84,7 @@ export function NewNoteForm({ onSubmit, isLoading = false }: NewNoteFormProps) {
             disabled={isLoading}
             className="disabled:cursor-not-allowed"
           >
-            Create Note
+            {defaultValues ? "Save Changes" : "Create Note"}
           </Button>
         </div>
       </form>
