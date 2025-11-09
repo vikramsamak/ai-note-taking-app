@@ -9,7 +9,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { FloatingActionButton } from "./floating-action-button";
-import { NewNoteForm } from "./new-note-form";
+import { NoteForm } from "./note-form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createNote } from "@/lib/api";
 import { Note } from "@/types";
@@ -50,10 +50,7 @@ export function NewNoteDialog() {
             Fill in the details to create your note.
           </DialogDescription>
         </DialogHeader>
-        <NewNoteForm
-          onSubmit={(values) => mutate(values)}
-          isLoading={isPending}
-        />
+        <NoteForm onSubmit={(values) => mutate(values)} isLoading={isPending} />
       </DialogContent>
     </Dialog>
   );

@@ -16,7 +16,7 @@ import { newNoteSchema } from "@/lib/validations/note-schema";
 import { MinimalTiptap } from "@/components/ui/shadcn-io/minimal-tiptap";
 import z from "zod";
 
-interface NewNoteFormProps {
+interface NoteFormProps {
   onSubmit: (values: z.infer<typeof newNoteSchema>) => void;
   isLoading?: boolean;
   defaultValues?: {
@@ -25,11 +25,11 @@ interface NewNoteFormProps {
   };
 }
 
-export function NewNoteForm({
+export function NoteForm({
   onSubmit,
   isLoading = false,
   defaultValues,
-}: NewNoteFormProps) {
+}: NoteFormProps) {
   const form = useForm({
     resolver: zodResolver(newNoteSchema),
     defaultValues: {

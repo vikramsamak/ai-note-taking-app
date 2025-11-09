@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { NewNoteForm } from "../dashboard";
+import { NoteForm } from "../dashboard";
 import { Note } from "@/types";
 import { updateNote } from "@/lib/api";
 
@@ -50,7 +50,7 @@ export function EditNoteDialog({ note, children }: EditNoteDialogProps) {
           </DialogDescription>
         </DialogHeader>
 
-        <NewNoteForm
+        <NoteForm
           onSubmit={(values) => mutate(values)}
           isLoading={isPending}
           defaultValues={{
