@@ -11,7 +11,7 @@ import {
 export const notes = pgTable("notes", {
   id: serial("id").primaryKey(),
   title: varchar("title", { length: 255 }).notNull(),
-  content: jsonb("content").$type<unknown>().notNull(),
+  content: text("content").notNull(),
   summary: text("summary"),
   tags: jsonb("tags").$type<string[]>().default([]),
   createdAt: timestamp("created_at").defaultNow().notNull(),

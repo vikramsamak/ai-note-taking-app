@@ -50,6 +50,13 @@
       "when": 1762680832976,
       "tag": "0006_married_kulan_gath",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1762687882293,
+      "tag": "0007_furry_william_stryker",
+      "breakpoints": true
     }
   ]
 }
