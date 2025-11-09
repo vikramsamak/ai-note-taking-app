@@ -1,5 +1,6 @@
 import { X } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "../ui/button";
 
 interface TagsEditorProps {
   tags: string[];
@@ -20,10 +21,14 @@ export function TagsEditor({ tags = [], onChange }: TagsEditorProps) {
             className="flex items-center gap-1"
           >
             #{tag}
-            <X
-              className="h-3 w-3 cursor-pointer"
+            <Button
+              size="icon"
+              variant="ghost"
               onClick={() => handleRemove(tag)}
-            />
+              className="p-0.5 cursor-pointer"
+            >
+              <X className="h-3 w-3" />
+            </Button>
           </Badge>
         ))
       )}
