@@ -67,7 +67,7 @@ export function NoteForm({
                     content={field.value as string}
                     onChange={field.onChange as (content: string) => void}
                     placeholder="Start typing your content here..."
-                    className="min-h-[400px]"
+                    className="min-h-[200px]"
                     editable={!isLoading}
                   />
                 </FormControl>
