@@ -8,7 +8,9 @@
     "lint": "eslint",
     "drizzle:generate-dev": "drizzle-kit generate",
     "drizzle:push-dev": "drizzle-kit push",
-    "drizzle:studio": "drizzle-kit studio"
+    "drizzle:studio": "drizzle-kit studio",
+    "migrate": "npx drizzle-kit migrate",
+    "prestart": "npm run migrate"
   },
   "dependencies": {
     "@google/genai": "^1.29.0",
