@@ -91,7 +91,9 @@ export async function analyzeNote(task: TaskType, noteId: string) {
         if (Array.isArray(parsed)) return parsed;
       } catch {
         return response
-          .replace(/[\[\]#"]/g, "")
+          .replace(/```(json)?/gi, "")
+          .replace(/^[\s\n]*|[\s\n]*$/g, "")
+          .replace(/[\[\]#{}"]/g, "")
           .split(",")
           .map((tag: string) => tag.trim())
           .filter(Boolean);
